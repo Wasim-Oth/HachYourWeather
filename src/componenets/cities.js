@@ -10,7 +10,7 @@ const CityWeather = () => {
     
     const FetchWeatherData = () => {
         setLoading(true)
-        const key = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
+        const key = '57bce97a083b41a424dd317579c14998';
         const url = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}&units=metric` ;
         fetch (url)
         .then (res => res.json())
