@@ -1,22 +1,28 @@
 import React from 'react';
 
 const CityDetails = ({props}) => {
+    const {city, deleteCity, key} = props;    
+    const icon = city.weather[0].icon;
+
     return ( 
-       <div>
-           {props.isLoading && <h4>Loading...</h4>}
-           {props.city.cod === '404' && <h3 style={{color: "red"}}> Please enter vaild city name</h3> }
-           {props.city.length === 0  && null } 
-           {(props.city.length !== 0 && props.city.cod !== '404') && <>
-            <div className= 'container'>  
-                    <h2> {props.city.name}, {props.city.sys.country}  </h2>
-                    <h3> {props.city.weather[0].main}</h3>
-                    <p>  {props.city.weather[0].description}</p>
-                    <p>  min temp: {props.city.main.temp_min}</p>
-                    <p>  max temp: {props.city.main.temp_max}</p>
-                    <p>  location: {props.city.coord.lon}, {props.city.coord.lat}</p>
+        <div className='container'>
+             <div className = 'city_container' >
+                <button className='delete_btn' title='Remove' onClick={ () => deleteCity(key)}> x </button>
+                
+                <div className='pic_temp'>
+                    <img className='weather_icon' src= {`http://openweathermap.org/img/w/${icon}.png`} />
+                    <h3> {city.main.temp} °C </h3> 
+                </div>
+
+                <h2> {city.name}, {city.sys.country} </h2>
+                <h3> {city.weather[0].main} </h3>
+                <p>  {city.weather[0].description}  </p>
+                <p>  min temp: {city.main.temp_min} °C </p>
+                <p>  max temp: {city.main.temp_max} °C </p>
+                <p>  location: {city.coord.lon}, {city.coord.lat} </p>
             </div>
-            </>}
         </div>
+      
  )
 }
 

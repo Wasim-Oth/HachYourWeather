@@ -30,7 +30,7 @@ body{
     width: 12rem;
     height: 2.3rem;
     font-size: 16px;
-    border-radius: 15px;
+    border-radius: 10px;
     border: 2px solid #e0e0e0;
     transition: width 0.4s ease-in-out;
 }
@@ -39,10 +39,36 @@ body{
     width: 20rem;
 }
 
-.container{
+.city_container{
     background-color:  #e0e0e0;
     margin: auto;
-    width: 30rem;
+    max-width: 30rem;
     padding: 1rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.15); 
+    border-radius: 8px;
 }
+
+.container{
+    margin-bottom: 2rem;
+}
+
+.weather_icon{
+    width: 5rem;
+}
+
+.pic_temp{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete_btn{
+    border: none;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+}
+
+
+

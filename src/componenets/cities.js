@@ -3,44 +3,66 @@ import Search from './Search';
 import CityDetails from './cityDetails';
 
 const CityWeather = () => { 
-    const [city, setCity] = useState([]);
+    const [cityWeather, setCityWeather] = useState([]);
     const [cityName, setCityName] = useState('');
     const [loading, setLoading] = useState(false);
-    const [error, serError] = useState(false);
-    
-    const FetchWeatherData = () => {
+    const [error, setError] = useState(false);
+    const [valedCityName, setValidCity] = useState(false)
+
+    const FetchWeatherData = async(e) => {
+        try{
+        e.preventDefault();
         setLoading(true)
         const key = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}&units=metric` ;
-        fetch (url)
-        .then (res => res.json())
-        .then (data => setCity(data))
-        .catch (err => {
+        const res = await fetch (url);
+        const data = await res.json();
+
+        if (data.cod >=400) {
+            setValidCity(true)
+        } else {  
+            setValidCity(false)
+            setCityWeather([data, ...cityWeather])
+        }
+
+        } catch (err) {
             console.error(err)
-            serError (true)
-         })
-        .finally (() => setLoading(false))
+            setError(true);
+
+        } finally {
+            setLoading(false);
+            setCityName("");
+          }
 
     }
-
-    function Change(event){
-        setCityName(event.target.value)
-    }
+    
+    const InputValue = (event) => setCityName(event.target.value);
+    
+    const deleteCity = (key) => {
+        const newCityWeather= [...cityWeather];
+        newCityWeather.splice(key, 1);
+        setCityWeather(newCityWeather);
+      };
 
     return (
         <div>
-              <Search Change={Change} Fetch={FetchWeatherData}/>
+            <Search change={InputValue} cityname={cityName} fetch={FetchWeatherData}  /> 
+            {error && <h4> Sorry! we were not able to process your request, please try again later </h4> }
+            {loading && <h4>Loading...</h4>}
+            {valedCityName ? <h4> Please enter a vaild city name </h4> : 
+            <> 
+                {cityWeather.map((city, i) => <CityDetails
+                    key={i}
+                    props={{
+                        city,
+                        deleteCity,
+                        key:i
+                       }}/>
+                    )}
+            </>  
+            }
 
-              {error ? <h4> Sorry! we were not able to process your request </h4> :
-              <CityDetails props={{
-                  city: city,
-                  isLoading: loading,
-                  hasError: error,
-                  cityName: cityName
-                  }}/>
-                }
         </div>
-        
     )
 }
 

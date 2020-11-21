@@ -1,12 +1,24 @@
 import React from 'react';
 
-const Search = (props) => {
+
+const Search = ({change, fetch, cityname}) => {
+    
     return (
         <div className='search'>
-             <input type='text' onChange={props.Change} placeholder='Search City' />
-             <button onClick= {props.Fetch} > Search </button> 
+
+             <input type='text'
+              value= {cityname} 
+              onChange={change}
+              placeholder='Search City' 
+              />
+
+              <button onClick={fetch}
+               disabled={!cityname ? true : false} 
+               style={{ cursor: !cityname? "not-allowed": "pointer"}} >
+               Search 
+              </button>      
         </div>
-       
+
     )
 }
 
