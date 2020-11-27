@@ -6,7 +6,7 @@ const CityWeather = () => {
     const [city, setCity] = useState([]);
     const [cityName, setCityName] = useState('');
     const [loading, setLoading] = useState(false);
-    const [error, serError] = useState(false);
+    const [isError, setError] = useState(false);
     
     const FetchWeatherData = () => {
         setLoading(true)
@@ -17,7 +17,7 @@ const CityWeather = () => {
         .then (data => setCity(data))
         .catch (err => {
             console.error(err)
-            serError (true)
+            setError (true)
          })
         .finally (() => setLoading(false))
 
@@ -31,12 +31,12 @@ const CityWeather = () => {
         <div>
               <Search Change={Change} Fetch={FetchWeatherData}/>
 
-              {error ? <h4> Sorry! we were not able to process your request </h4> :
+              {isError ? <h4> Sorry! we were not able to process your request </h4> :
               <CityDetails props={{
-                  city: city,
-                  isLoading: loading,
-                  hasError: error,
-                  cityName: cityName
+                  city,
+                  loading,
+                  isError,
+                  cityName
                   }}/>
                 }
         </div>
