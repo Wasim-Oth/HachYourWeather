@@ -1,48 +1,52 @@
-*{
-    text-align: center;
+* {
+  text-align: center;
 }
 
-body{
-   background-image: linear-gradient(to  right, rgb(157, 177, 157), rgb(160, 189, 157));
+body {
+  background-image: linear-gradient(
+    to right,
+    rgb(157, 177, 157),
+    rgb(160, 189, 157)
+  );
 }
 
-.search{
-    padding: 2rem; 
+.search {
+  padding: 2rem;
 }
 
-.search button{
-    margin: 1rem;
-    height: 2.5rem;
-    font-size: 16px;
-    text-align: center;
-    display: inline-block;
-    width: 7rem;
-    border: 8px;
-    background-color: #4CAF50;
-    color:white;
-    cursor: pointer;
+.search button {
+  margin: 1rem;
+  height: 2.5rem;
+  font-size: 16px;
+  text-align: center;
+  display: inline-block;
+  width: 7rem;
+  border: 8px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
 }
-.search button:hover{
-    background-color: rgb(152, 153, 153);
+.search button:hover {
+  background-color: rgb(152, 153, 153);
 }
 
-.search input{
-    width: 12rem;
-    height: 2.3rem;
-    font-size: 16px;
-    border-radius: 15px;
-    border: 2px solid #e0e0e0;
-    transition: width 0.4s ease-in-out;
+.search input {
+  width: 12rem;
+  height: 2.3rem;
+  font-size: 16px;
+  border-radius: 15px;
+  border: 2px solid #e0e0e0;
+  transition: width 0.4s ease-in-out;
 }
 
 .search input:focus {
-    width: 20rem;
+  width: 20rem;
 }
 
-.container{
-    background-color:  #e0e0e0;
-    margin: auto;
-    width: 30rem;
-    padding: 1rem;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.15); 
+.container {
+  background-color: #e0e0e0;
+  margin: auto;
+  width: 30rem;
+  padding: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
 }
